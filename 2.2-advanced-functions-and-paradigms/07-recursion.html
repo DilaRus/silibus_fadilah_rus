@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursion</title>
+    <script>
+        let counter = 10
+
+        function reduceToZero(n) {
+          // Recursive stopper - base condition
+          if(n === 0) {
+            console.log("It's Time")
+            return
+          }
+          console.log("Current value is: " + n)
+
+          // Recursive calling
+          reduceToZero(n - 1)
+        }
+
+        reduceToZero(counter)
+    </script>
+</head>
+<body>
+    <h1>Open the browser console (F12) to see the output</h1>
+</body>
+</html>

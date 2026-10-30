@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Higher order function: repeating pattern</title>
+    <script>
+        const radius = [1, 2, 3];
+
+        // function to calculate area of the circle
+        const calculateArea =  function (radius) {
+            const output = [];
+            for(let i = 0; i< radius.length; i++){
+                output.push(Math.PI * radius[i] * radius[i]);
+            }
+            return output;
+        }
+
+        // function to calculate diameter of the circle
+        const calculateDiameter =  function (radius) {
+            const output = [];
+            for(let i = 0; i< radius.length; i++){
+                output.push(2 * radius[i]);
+            }
+            return output;
+        }
+
+        console.log(calculateArea(radius));
+        console.log(calculateDiameter(radius))
+    </script>
+</head>
+<body>
+    <h1>Open the browser console (F12) to see the output</h1>
+</body>
+</html>

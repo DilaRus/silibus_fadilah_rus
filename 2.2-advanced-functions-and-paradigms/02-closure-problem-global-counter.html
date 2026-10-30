@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closure: the problem</title>
+    <script>
+        // Initiate counter
+        let counter = 0;
+
+        // Function to increment counter
+        function add() {
+          counter += 1;
+        }
+
+        // Call add() 3 times
+        add();
+        add();
+        add();
+
+        console.log("The global counter is: " + counter)
+    </script>
+</head>
+<body>
+    <h1>Open the browser console (F12) to see the output</h1>
+</body>
+</html>

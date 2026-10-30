@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OOP: getter and setter</title>
+    <script>
+        class Member{
+          constructor(firstName, lastName){
+            this._firstName = firstName;
+            this._lastName = lastName;
+          }
+
+          // Define Getter
+          get firstName(){
+            return this._firstName;
+          }
+
+          // Define Setter
+          set firstName(firstName){
+            if (typeof firstName === 'string' && firstName.length > 0){
+              console.log(firstName.length)
+              this._firstName = firstName
+            } else {
+              this._firstName = "John"
+            }
+          }
+
+          greet(){
+            console.log(`Hello my name is ${this._firstName} ${this._lastName}`)
+          }
+        }
+        // Instantiate class instance
+        let member1 = new Member("Johnny", "Bravo");
+
+        // Assessing firstName
+        console.log(`Assessing first name: ${member1.firstName}`)
+
+        // Changing firstName
+        member1.firstName = 3
+        console.log(`New first name: ${member1.firstName}`)
+
+        member1.firstName = ""
+        console.log(`New first name: ${member1.firstName}`)
+    </script>
+</head>
+<body>
+    <h1>Open the browser console (F12) to see the output</h1>
+</body>
+</html>

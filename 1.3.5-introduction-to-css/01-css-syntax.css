@@ -1,0 +1,26 @@
+/* Slide 6: Basic CSS Rule Structure
+selector {
+    property: value;
+    property: value;
+}
+*/
+
+/* Slide 6: Example CSS Rules */
+p {
+    color: blue;
+    font-size: 16px;
+    margin: 10px;
+}
+
+/* Slide 7: CSS Comments */
+/* This is a CSS comment */
+/* Comments can span
+   multiple lines */
+
+/* Slide 7: CSS is Case-Insensitive
+   (the three declarations below mean the same thing; they are placed inside a rule so the file is valid CSS) */
+.case-insensitive-demo {
+    COLOR: RED;
+    color: red;
+    Color: Red;
+}

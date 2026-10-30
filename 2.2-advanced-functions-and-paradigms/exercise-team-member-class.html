@@ -1,0 +1,99 @@
+<!--
+Exercise (slides 28-29)
+Scenario:- You are enhancing the team management application module. You need to represent team members more
+formally, implement different ways to query them, and integrate asynchronous data fetching for additional details.
+Objective:- Apply and contrast Object-Oriented, Recursive, Functional, and Asynchronous programming techniques
+to solve specific problems within the team management context.
+
+Define the TeamMember Class
+Create a TeamMember class.
+The constructor should accept an object containing the raw data (id, firstName, lastName, hobbies, favouriteFoods, pets)
+and assign these to instance properties.
+Implement the following methods within the class:
+  fullName(): Returns "LastName, FirstName".
+  hasHobby(hobby): Returns true if the member's hobbies array includes the given hobby, false otherwise.
+  addPet(petName): Adds a new pet to the member's pets array (demonstrating state mutation).
+  getSummary(): Returns a string like "Steve Liam has 2 hobbies and 1 pet(s)."
+Clear pets array using recursive
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise: TeamMember Class</title>
+    <script>
+        const rawTeamData = [
+            { id: 1, firstName: "Steve", lastName: "Liam", hobbies: ["Reading", "Music"], favouriteFoods: ["Pizza"], pets: ["Cat"] },
+            { id: 2, firstName: "Emily", lastName: "Rose", hobbies: ["Painting", "Hiking"], favouriteFoods: ["Pasta", "Salad"], pets: ["Dog", "Bird"] },
+            { id: 3, firstName: "David", lastName: "Miller", hobbies: ["Gaming"], favouriteFoods: ["Burger", "Fries"], pets: [] },
+            { id: 4, firstName: "Jessica", lastName: "Brown", hobbies: ["Cooking", "Gardening", "Music"], favouriteFoods: ["Sushi", "Steak"], pets: ["Rabbit"] },
+            { id: 5, firstName: "Michael", lastName: "Davis", hobbies: ["Photography", "Hiking"], favouriteFoods: ["Tacos"], pets: ["Hamster", "Dog"] },
+            { id: 6, firstName: "Olivia", lastName: "Wilson", hobbies: ["Yoga", "Writing", "Music"], favouriteFoods: ["Soup", "Sandwich"], pets: ["Fish"] }
+        ];
+
+        class TeamMember {
+            // The constructor accepts the raw data object
+            constructor(data) {
+                this._id = data.id;
+                this._firstName = data.firstName;
+                this._lastName = data.lastName;
+                this._hobbies = data.hobbies;
+                this._favouriteFoods = data.favouriteFoods;
+                this._pets = data.pets;
+            }
+
+            // Returns "LastName, FirstName"
+            fullName() {
+                return `${this._lastName}, ${this._firstName}`;
+            }
+
+            // Returns true if the hobbies array includes the given hobby
+            hasHobby(hobby) {
+                return this._hobbies.includes(hobby);
+            }
+
+            // Adds a new pet (changes the pets array)
+            addPet(petName) {
+                this._pets.push(petName);
+            }
+
+            // Returns e.g. "Steve Liam has 2 hobbies and 1 pet(s)."
+            getSummary() {
+                return `${this._firstName} ${this._lastName} has ${this._hobbies.length} hobbies and ${this._pets.length} pet(s).`;
+            }
+
+            // Clear the pets array using recursion
+            clearPets() {
+                // Base case: stop when there are no pets left
+                if (this._pets.length === 0) {
+                    return;
+                }
+                // Recursive step: remove one pet, then call the method again
+                this._pets.pop();
+                this.clearPets();
+            }
+        }
+
+        // Create the TeamMember objects
+        const members = [];
+        for (let i = 0; i < rawTeamData.length; i++) {
+            members.push(new TeamMember(rawTeamData[i]));
+        }
+
+        console.log(members[0].fullName());          // Liam, Steve
+        console.log(members[0].hasHobby("Music"));   // true
+        console.log(members[0].hasHobby("Gaming"));  // false
+        console.log(members[0].getSummary());        // Steve Liam has 2 hobbies and 1 pet(s).
+
+        members[2].addPet("Snake");
+        console.log(members[2].getSummary());        // David Miller has 1 hobbies and 1 pet(s).
+
+        members[1].clearPets();
+        console.log(members[1].getSummary());        // Emily Rose has 2 hobbies and 0 pet(s).
+    </script>
+</head>
+<body>
+    <h1>Open the browser console (F12) to see the output</h1>
+</body>
+</html>

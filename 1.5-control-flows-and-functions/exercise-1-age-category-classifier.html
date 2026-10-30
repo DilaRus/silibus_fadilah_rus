@@ -1,0 +1,38 @@
+<!--
+Coding Exercise 1 : Age Category Classifier (if-else) (slide 21)
+Instructions: Create a simple program that asks for a person's age and categorizes them.
+  Age categories:
+  0-12: Child
+  13-19: Teenager
+  20-64: Adult
+  65+: Senior
+  Invalid: Less than 0
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Category Classifier</title>
+    <script>
+        // Starter code
+        let age = Number(prompt("Enter your age: "));
+
+        // Complete the if-else statements
+        if (age >= 0 && age < 13) {
+            console.log("Child");
+        } else if (age >= 13 && age < 20) {
+            console.log("Teenager");
+        } else if (age >= 20 && age < 65) {
+            console.log("Adult");
+        } else if (age >= 65) {
+            console.log("Senior");
+        } else {
+            console.log("Invalid age");
+        }
+    </script>
+</head>
+<body>
+    <h1>Open the browser console (F12) to see the output</h1>
+</body>
+</html>

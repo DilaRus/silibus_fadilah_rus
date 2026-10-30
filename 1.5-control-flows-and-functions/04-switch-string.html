@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>switch (string)</title>
+    <script>
+        let grade = String(prompt("Enter your grade: ")).toUpperCase();
+
+        switch (grade) {
+            case "A":
+                console.log("Excellent!");
+                break;
+            case "B":
+                console.log("Good job!");
+                break;
+            case "C":
+                console.log("You passed!");
+                break;
+            default:
+                console.log("Keep trying!");
+                break;
+        }
+    </script>
+</head>
+<body>
+    <h1>Open the browser console (F12) to see the output</h1>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrow function</title>
+    <script>
+        let greet = () => "Good Morning";
+        let message = greet();
+        console.log(message);
+
+        let addition = (num1, num2) => num1 + num2;
+        let calcResult = addition(5, 6);
+        console.log(calcResult);
+
+        let num = 12;
+        let checkEven = (num % 2 === 0) ?
+            () => console.log("Even"):
+            () => console.log("Odd");
+
+        checkEven();
+    </script>
+</head>
+<body>
+    <h1>Open the browser console (F12) to see the output</h1>
+</body>
+</html>

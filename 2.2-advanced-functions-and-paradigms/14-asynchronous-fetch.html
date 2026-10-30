@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asynchronous programming</title>
+    <script>
+        const apiUrl = "https://jsonplaceholder.typicode.com/users";
+
+        function fetchData(url, callback){
+          fetch(url)
+            .then(response => response.json())
+            .then(data => callback(data))
+            .catch(error => callback(error));
+        }
+
+        fetchData(apiUrl, (data) => {
+          console.log(data);
+        })
+
+        console.log("This line will be excuted immediately.")
+    </script>
+</head>
+<body>
+    <h1>Open the browser console (F12) to see the output</h1>
+</body>
+</html>

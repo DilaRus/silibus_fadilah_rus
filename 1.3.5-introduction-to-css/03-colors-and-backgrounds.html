@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Colors &amp; Background</title>
+    <style>
+      /* Same demo box styling used in the "ways to add CSS" example */
+      .css-example {
+        background-color: lightgray;
+        padding: 20px;
+        margin: 10px;
+        border: 2px solid black;
+      }
+      .css-example h4 {
+        color: black;
+      }
+    </style>
+  </head>
+  <body>
+<div class="css-example">
+      <h4>6. Colors and Backgrounds</h4>
+    <h5>Named Colors:</h5>
+      <div style="display: flex; gap: 10px; margin: 10px 0">
+        <div
+          style="
+            background-color: crimson;
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            flex: 1;
+            text-align: center;
+          "
+        >
+          crimson
+        </div>
+        <div
+          style="
+            background-color: teal;
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            flex: 1;
+            text-align: center;
+          "
+        >
+          teal
+        </div>
+        <div
+          style="
+            background-color: gold;
+            color: black;
+            padding: 20px;
+            border-radius: 5px;
+            flex: 1;
+            text-align: center;
+          "
+        >
+          gold
+        </div>
+        <div
+          style="
+            background-color: indigo;
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            flex: 1;
+            text-align: center;
+          "
+        >
+          indigo
+        </div>
+      </div>
+    <h5>Hexadecimal Colors:</h5>
+      <div style="display: flex; gap: 10px; margin: 10px 0">
+        <div
+          style="
+            background-color: #e91e63;
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            flex: 1;
+            text-align: center;
+          "
+        >
+          #E91E63
+        </div>
+        <div
+          style="
+            background-color: #4caf50;
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            flex: 1;
+            text-align: center;
+          "
+        >
+          #4CAF50
+        </div>
+        <div
+          style="
+            background-color: #ff9800;
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            flex: 1;
+            text-align: center;
+          "
+        >
+          #FF9800
+        </div>
+        <div
+          style="
+            background-color: #9c27b0;
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            flex: 1;
+            text-align: center;
+          "
+        >
+          #9C27B0
+        </div>
+      </div>
+    <h5>RGB Colors:</h5>
+      <div style="display: flex; gap: 10px; margin: 10px 0">
+        <div
+          style="
+            background-color: rgb(255, 87, 34);
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            flex: 1;
+            text-align: center;
+          "
+        >
+          rgb(255, 87, 34)
+        </div>
+        <div
+          style="
+            background-color: rgb(63, 81, 181);
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            flex: 1;
+            text-align: center;
+          "
+        >
+          rgb(63, 81, 181)
+        </div>
+        <div
+          style="
+            background-color: rgb(76, 175, 80);
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            flex: 1;
+            text-align: center;
+          "
+        >
+          rgb(76, 175, 80)
+        </div>
+        <div
+          style="
+            background-color: rgb(121, 85, 72);
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            flex: 1;
+            text-align: center;
+          "
+        >
+          rgb(121, 85, 72)
+        </div>
+      </div>
+    <h5>RGBA Colors (with transparency):</h5>
+      <div style="display: flex; gap: 10px; margin: 10px 0">
+        <div
+          style="
+            background-color: rgba(233, 30, 99, 0.7);
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            flex: 1;
+            text-align: center;
+          "
+        >
+          rgba(233, 30, 99, 0.7)
+        </div>
+        <div
+          style="
+            background-color: rgba(0, 188, 212, 0.6);
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            flex: 1;
+            text-align: center;
+          "
+        >
+          rgba(0, 188, 212, 0.6)
+        </div>
+        <div
+          style="
+            background-color: rgba(255, 193, 7, 0.8);
+            color: black;
+            padding: 20px;
+            border-radius: 5px;
+            flex: 1;
+            text-align: center;
+          "
+        >
+          rgba(255, 193, 7, 0.8)
+        </div>
+        <div
+          style="
+            background-color: rgba(96, 125, 139, 0.5);
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            flex: 1;
+            text-align: center;
+          "
+        >
+          rgba(96, 125, 139, 0.5)
+        </div>
+      </div>
+    <h5>HSL Colors:</h5>
+      <div style="display: flex; gap: 10px; margin: 10px 0">
+        <div
+          style="
+            background-color: hsl(340, 82%, 52%);
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            flex: 1;
+            text-align: center;
+          "
+        >
+          hsl(340, 82%, 52%)
+        </div>
+        <div
+          style="
+            background-color: hsl(180, 100%, 25%);
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            flex: 1;
+            text-align: center;
+          "
+        >
+          hsl(180, 100%, 25%)
+        </div>
+        <div
+          style="
+            background-color: hsl(45, 100%, 60%);
+            color: black;
+            padding: 20px;
+            border-radius: 5px;
+            flex: 1;
+            text-align: center;
+          "
+        >
+          hsl(45, 100%, 60%)
+        </div>
+        <div
+          style="
+            background-color: hsl(270, 50%, 40%);
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            flex: 1;
+            text-align: center;
+          "
+        >
+          hsl(270, 50%, 40%)
+        </div>
+      </div>
+    <h5>Background Properties:</h5>
+      <div style="display: flex; gap: 10px; margin: 10px 0">
+        <div
+          style="
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            padding: 20px;
+            border-radius: 5px;
+            flex: 1;
+            text-align: center;
+            color: white;
+          "
+        >
+          Linear Gradient
+        </div>
+        <div
+          style="
+            background: radial-gradient(circle, #667eea, #764ba2);
+            padding: 20px;
+            border-radius: 5px;
+            flex: 1;
+            text-align: center;
+            color: white;
+          "
+        >
+          Radial Gradient
+        </div>
+        <div
+          style="
+            background: conic-gradient(from 0deg, #ff9a9e, #fecfef, #fecfef);
+            padding: 20px;
+            border-radius: 5px;
+            flex: 1;
+            text-align: center;
+            color: black;
+          "
+        >
+          Conic Gradient
+        </div>
+        <div
+          style="
+            background: repeating-linear-gradient(
+              45deg,
+              #606dbc,
+              #606dbc 10px,
+              #465298 10px,
+              #465298 20px
+            );
+            padding: 20px;
+            border-radius: 5px;
+            flex: 1;
+            text-align: center;
+            color: white;
+          "
+        >
+          Repeating Gradient
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,134 @@
+<!--
+Exercise 1 : Profile Card with CSS (slide 19)
+Create the profile card using the suitable CSS syntax
+  - Centered, white card on a light blue background
+  - A purple name heading
+  - Gray italic job title
+  - Bio section with light gray background
+  - Yellow-background section headers
+  - Colored input fields
+  - Interactive skill tags that grow on hover
+  - Professional, clean layout
+Edit the name, job title and bio below to your own details.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile Card</title>
+
+    <!-- Add your internal CSS here -->
+    <style>
+        /* Element selector: light blue page background */
+        body {
+            background-color: aliceblue;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Class selector: centered white card */
+        .profile-card {
+            background-color: white;
+            max-width: 350px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 2px solid gray;
+            border-radius: 10px;
+        }
+
+        /* ID selectors: name and bio */
+        #profile-name {
+            color: purple;
+            text-align: center;
+            margin-bottom: 0;
+        }
+
+        .job-title {
+            color: gray;
+            font-style: italic;
+            text-align: center;
+            margin-top: 0;
+        }
+
+        #bio {
+            background-color: #f0f0f0;
+            padding: 10px;
+            font-size: 14px;
+            font-style: italic;
+            line-height: 1.5;
+            border-radius: 5px;
+        }
+
+        /* Yellow-background section headers */
+        .contact-info h3,
+        .skills h3 {
+            background-color: yellow;
+            padding: 8px;
+            font-size: 16px;
+        }
+
+        .skills h3 {
+            color: red;
+        }
+
+        /* Attribute selectors: colored input fields */
+        .contact-info input {
+            display: block;
+            width: 90%;
+            padding: 8px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+
+        input[type="email"] {
+            border: 2px solid blue;
+        }
+
+        input[type="tel"] {
+            border: 2px solid green;
+        }
+
+        /* Skill tags that grow on hover */
+        .skill {
+            display: inline-block;
+            background-color: green;
+            color: white;
+            font-size: 12px;
+            padding: 5px 10px;
+            border-radius: 12px;
+            margin: 3px;
+        }
+
+        .highlight-skill {
+            background-color: orange;
+        }
+
+        .skill:hover {
+            transform: scale(1.3);
+            transition: transform 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-card">
+        <h2 id="profile-name">Your Full Name</h2>
+        <p class="job-title">Your Job Title/Student</p>
+        <p id="bio">Write a short bio about yourself (2-3 sentences)</p>
+
+        <div class="contact-info">
+            <h3>Contact Information</h3>
+            <input type="email" placeholder="your.email@example.com" readonly>
+            <input type="tel" placeholder="+1234567890" readonly>
+        </div>
+
+        <div class="skills">
+            <h3>Skills</h3>
+            <span class="skill">HTML</span>
+            <span class="skill">CSS</span>
+            <span class="skill highlight-skill">JavaScript</span>
+        </div>
+    </div>
+</body>
+</html>

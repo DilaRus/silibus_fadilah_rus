@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closure: private counter</title>
+    <script>
+        function myCounter() {
+          let counter = 0;
+          return function() {
+            counter++;
+            return counter;
+          };
+        }
+        const add = myCounter();
+
+        // Private variable memory
+        console.log("The global counter is: " + add())
+        console.log("The global counter is: " + add())
+        console.log("The global counter is: " + add())
+
+        // Trying to access private memory
+        // (this line throws "ReferenceError: counter is not defined", which is the point of the slide)
+        console.log("Assessing counter" + counter)
+    </script>
+</head>
+<body>
+    <h1>Open the browser console (F12) to see the output</h1>
+</body>
+</html>

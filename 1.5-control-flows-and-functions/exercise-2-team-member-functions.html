@@ -1,0 +1,82 @@
+<!--
+Coding Exercise 2 (slide 32)
+Scenario - You have a team member profile application and need to add functions to extract
+and display specific information about each member as following:
+  Full Name Display: Create a function to display member full name.
+  Full Name Vowel Count: Create a function that used to count vowel in member full name.
+  Food Lover Check: Create a function to check if member is food lover (which has more than one favourite food).
+  Pet Lover Check: Create a function to check whether member is a pet keeper (has more than one pet).
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Exercise 2</title>
+    <script>
+        let teamMember1 = {
+            firstName: "Alice",
+            lastName: "Johnson",
+            hobbies: ["Reading", "Hiking", "Coding"],
+            favoriteFoods: ["Pizza", "Sushi", "Chocolate"],
+            pets: ["Dog", "Cat"]
+        };
+
+        let teamMember2 = {
+            firstName: "Bob",
+            lastName: "Smith",
+            hobbies: ["Gaming", "Photography"],
+            favoriteFoods: ["Burgers", "Pasta"],
+            pets: []
+        };
+
+        let teamMember3 = {
+            firstName: "Charlie",
+            lastName: "Brown",
+            hobbies: ["Drawing", "Music", "Cooking"],
+            favoriteFoods: ["Tacos", "Ice Cream"],
+            pets: ["Parrot"]
+        };
+
+        // Full Name Display
+        function getFullName(member) {
+            return member.firstName + " " + member.lastName;
+        }
+
+        // Full Name Vowel Count
+        function countFullNameVowels(member) {
+            let fullName = getFullName(member).toLowerCase();
+            let vowels = "aeiou";
+            let vowelCount = 0;
+            for (let i = 0; i < fullName.length; i++) {
+                if (vowels.includes(fullName[i])) {
+                    vowelCount++;
+                }
+            }
+            return vowelCount;
+        }
+
+        // Food Lover Check (more than one favourite food)
+        function isFoodLover(member) {
+            return member.favoriteFoods.length > 1;
+        }
+
+        // Pet Lover Check (more than one pet)
+        function isPetKeeper(member) {
+            return member.pets.length > 1;
+        }
+
+        let members = [teamMember1, teamMember2, teamMember3];
+        for (let i = 0; i < members.length; i++) {
+            console.log("--- Team Member " + (i + 1) + ": " + getFullName(members[i]) + " ---");
+            console.log("Full Name:", getFullName(members[i]));
+            console.log("Vowel Count:", countFullNameVowels(members[i]));
+            console.log("Is Food Lover (>1 food):", isFoodLover(members[i]));
+            console.log("Is Pet Keeper (>1 pet):", isPetKeeper(members[i]));
+        }
+    </script>
+</head>
+<body>
+    <h1>Open the browser console (F12) to see the output</h1>
+</body>
+</html>

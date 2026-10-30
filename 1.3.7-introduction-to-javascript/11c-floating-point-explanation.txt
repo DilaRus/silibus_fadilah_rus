@@ -1,0 +1,24 @@
+Slide 26: why 0.1 + 0.2 is not exactly 0.3 (explanation shown on the slides as comments)
+
+# human use base 10
+# computer use binary (base 2)
+
+# base 10 | base 2
+# --------+--------------------
+# 0.1     | 0.0001100110011...
+# 0.2     | 0.0011001100110...
+
+# For human:
+#   0.1
+# + 0.2
+# -----
+#   0.3
+
+# For computer:
+#   0.0001100110011...
+# + 0.0011001100110...
+# ---------------------
+#   0.0100110011001...
+
+# 19/63 ≈ 0.301587...
+# answer depends on where you cut off
