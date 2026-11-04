@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cutie Translator</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Pacifico&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --pink-50: #fff0f6;
+    --pink-100: #ffe0ee;
+    --pink-200: #ffc2dc;
+    --pink-300: #ff9ec7;
+    --pink-400: #ff7ab3;
+    --pink-500: #ff5a9e;
+    --pink-700: #c2326f;
+    --ink: #7a2650;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Fredoka", "Trebuchet MS", sans-serif;
+    color: var(--ink);
+    background:
+      radial-gradient(circle at 15% 20%, #ffd1e6 0, transparent 40%),
+      radial-gradient(circle at 85% 80%, #ffc2dc 0, transparent 45%),
+      linear-gradient(160deg, #fff0f6, #ffe3f0 60%, #ffd6ea);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 28px 16px 60px;
+    overflow-x: hidden;
+  }
+
+  /* floating petals */
+  .petal {
+    position: fixed;
+    top: -40px;
+    pointer-events: none;
+    z-index: 0;
+    opacity: .75;
+    animation: fall linear infinite;
+  }
+  @keyframes fall {
+    to { transform: translateY(112vh) rotate(360deg); }
+  }
+
+  .card {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 560px;
+    background: rgba(255,255,255,.82);
+    backdrop-filter: blur(6px);
+    border: 4px solid var(--pink-200);
+    border-radius: 36px;
+    padding: 30px 24px 28px;
+    box-shadow: 0 14px 0 var(--pink-200), 0 24px 40px rgba(255, 90, 158, .25);
+    margin-top: 24px;
+  }
+
+  .corner { position: absolute; width: 74px; height: 74px; animation: sway 4s ease-in-out infinite; }
+  .corner.tl { top: -34px; left: -26px; }
+  .corner.tr { top: -34px; right: -26px; animation-delay: -1.5s; }
+  .corner.bl { bottom: -30px; left: -22px; width: 58px; height: 58px; animation-delay: -2.5s; }
+  .corner.br { bottom: -30px; right: -22px; width: 58px; height: 58px; animation-delay: -.7s; }
+  @keyframes sway {
+    0%,100% { transform: rotate(-8deg) scale(1); }
+    50% { transform: rotate(8deg) scale(1.08); }
+  }
+
+  h1 {
+    font-family: "Pacifico", cursive;
+    font-weight: 400;
+    font-size: 2.2rem;
+    text-align: center;
+    margin: 4px 0 2px;
+    color: var(--pink-500);
+    text-shadow: 3px 3px 0 var(--pink-100);
+  }
+  .sub { text-align: center; margin: 0 0 22px; font-size: .95rem; color: var(--pink-700); opacity: .8; }
+
+  .langs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .langs .field { flex: 1; }
+  label.tiny { display: block; font-size: .78rem; font-weight: 500; margin: 0 0 4px 10px; color: var(--pink-700); }
+
+  select, textarea {
+    width: 100%;
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--ink);
+    background: var(--pink-50);
+    border: 3px solid var(--pink-200);
+    border-radius: 22px;
+    padding: 11px 14px;
+    outline: none;
+    transition: border-color .2s, box-shadow .2s, transform .2s;
+  }
+  select { appearance: none; cursor: pointer;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16'><text x='0' y='13' font-size='13'>🌸</text></svg>");
+    background-repeat: no-repeat; background-position: right 12px center; padding-right: 38px; }
+  select:focus, textarea:focus {
+    border-color: var(--pink-400);
+    box-shadow: 0 0 0 5px rgba(255, 122, 179, .22);
+  }
+  textarea { resize: vertical; min-height: 110px; }
+  textarea::placeholder { color: #e3a0be; }
+
+  /* cute buttons */
+  .btn {
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: #fff;
+    background: linear-gradient(180deg, var(--pink-300), var(--pink-500));
+    border: 3px solid #fff;
+    border-radius: 999px;
+    padding: 12px 26px;
+    cursor: pointer;
+    box-shadow: 0 6px 0 var(--pink-700), 0 10px 18px rgba(255, 90, 158, .35);
+    transition: transform .12s, box-shadow .12s, filter .2s;
+    position: relative;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .btn:hover { filter: brightness(1.06); transform: translateY(-2px) rotate(-1deg); }
+  .btn:active { transform: translateY(5px); box-shadow: 0 1px 0 var(--pink-700), 0 3px 8px rgba(255, 90, 158, .3); }
+  .btn:disabled { filter: grayscale(.3) opacity(.7); cursor: wait; }
+  .btn.round { width: 52px; height: 52px; padding: 0; font-size: 1.35rem; flex: none; margin-top: 18px; }
+  .btn.soft {
+    color: var(--pink-700);
+    background: linear-gradient(180deg, #fff, var(--pink-100));
+    box-shadow: 0 5px 0 var(--pink-300), 0 8px 14px rgba(255, 90, 158, .2);
+    border-color: var(--pink-200);
+    font-size: .92rem;
+    padding: 9px 18px;
+  }
+  .btn.soft:active { box-shadow: 0 1px 0 var(--pink-300); }
+  .btn.big { width: 100%; font-size: 1.25rem; padding: 15px; margin-top: 16px; }
+
+  .out {
+    margin-top: 22px;
+    background: linear-gradient(180deg, #fff, var(--pink-50));
+    border: 3px dashed var(--pink-300);
+    border-radius: 26px;
+    padding: 16px 18px;
+    min-height: 90px;
+    position: relative;
+    white-space: pre-wrap;
+    word-break: break-word;
+    line-height: 1.5;
+  }
+  .out .placeholder { color: #e3a0be; }
+  .out.pop { animation: pop .5s cubic-bezier(.3,1.6,.5,1); }
+  @keyframes pop { 0% { transform: scale(.85); opacity: .3; } 100% { transform: scale(1); opacity: 1; } }
+  .out-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .out-head span { font-size: .8rem; font-weight: 600; color: var(--pink-500); }
+
+  .row { display: flex; justify-content: space-between; align-items: center; margin-top: 14px; gap: 8px; }
+
+  .loader { display: inline-flex; gap: 8px; align-items: center; color: var(--pink-500); }
+  .loader i { display: inline-block; font-style: normal; animation: bounce .8s ease-in-out infinite; }
+  .loader i:nth-child(2) { animation-delay: .15s; }
+  .loader i:nth-child(3) { animation-delay: .3s; }
+  @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+  .err { color: #c0264f; }
+
+  .burst {
+    position: fixed; pointer-events: none; z-index: 50;
+    font-size: 20px;
+    animation: burst .9s ease-out forwards;
+  }
+  @keyframes burst {
+    0% { transform: translate(0,0) scale(.4); opacity: 1; }
+    100% { transform: translate(var(--dx), var(--dy)) scale(1.3) rotate(var(--rot)); opacity: 0; }
+  }
+
+  footer { text-align: center; margin-top: 18px; font-size: .8rem; color: var(--pink-700); opacity: .7; }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <!-- corner flowers (filled by JS) -->
+  <div class="corner tl" data-flower="#ff7ab3"></div>
+  <div class="corner tr" data-flower="#ffa6cb"></div>
+  <div class="corner bl" data-flower="#ff93bf"></div>
+  <div class="corner br" data-flower="#ff6fa9"></div>
+
+  <h1>Cutie Translator</h1>
+  <p class="sub">type something sweet and I'll translate it ✨</p>
+
+  <div class="langs">
+    <div class="field">
+      <label class="tiny" for="from">From</label>
+      <select id="from"></select>
+    </div>
+    <button class="btn round" id="swap" title="Swap languages" aria-label="Swap languages">⇄</button>
+    <div class="field">
+      <label class="tiny" for="to">To</label>
+      <select id="to"></select>
+    </div>
+  </div>
+
+  <textarea id="text" placeholder="Write your sentence here… 🌷"></textarea>
+
+  <button class="btn big" id="go">🌸 Translate 🌸</button>
+
+  <div class="out" id="out">
+    <div class="out-head">
+      <span>💗 Translation</span>
+      <button class="btn soft" id="copy" style="display:none">Copy 💌</button>
+    </div>
+    <div id="result"><span class="placeholder">Your translation will bloom here…</span></div>
+  </div>
+
+  <div class="row">
+    <button class="btn soft" id="sound">🔔 Sound: on</button>
+    <button class="btn soft" id="clear">Clear 🧸</button>
+  </div>
+
+  <footer>made with love 🌷 powered by Gemini</footer>
+</div>
+
+<script>
+/* ---------- config ---------- */
+// If this page is served by FastAPI, "" works. If opened as a file, fall back to local server.
+const API_BASE = location.protocol === "file:" ? "http://127.0.0.1:8000" : "";
+const LANGS = ["English","Malay","German","Japanese","Korean","Chinese","French","Spanish","Indonesian","Arabic","Thai","Italian"];
+
+/* ---------- elements ---------- */
+const $ = (id) => document.getElementById(id);
+const fromSel = $("from"), toSel = $("to"), textEl = $("text");
+const goBtn = $("go"), resultEl = $("result"), outEl = $("out"), copyBtn = $("copy");
+const soundBtn = $("sound"), clearBtn = $("clear"), swapBtn = $("swap");
+
+LANGS.forEach(l => {
+  fromSel.add(new Option(l, l));
+  toSel.add(new Option(l, l));
+});
+fromSel.value = "English";
+toSel.value = "German";
+
+/* ---------- flowers ---------- */
+function flowerSVG(color = "#ff7ab3", center = "#ffe27a") {
+  let petals = "";
+  for (let i = 0; i < 8; i++) {
+    petals += `<ellipse cx="50" cy="26" rx="13" ry="22" fill="${color}" stroke="#fff" stroke-width="2.5" transform="rotate(${i * 45} 50 50)"/>`;
+  }
+  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">${petals}
+    <circle cx="50" cy="50" r="15" fill="${center}" stroke="#fff" stroke-width="3"/>
+    <circle cx="45" cy="46" r="3" fill="#fff" opacity=".7"/></svg>`;
+}
+document.querySelectorAll("[data-flower]").forEach(el => {
+  el.innerHTML = flowerSVG(el.dataset.flower);
+});
+
+// falling petals
+const petalColors = ["#ffb3d3", "#ff9ec7", "#ffd0e4", "#ff86b8"];
+for (let i = 0; i < 16; i++) {
+  const p = document.createElement("div");
+  p.className = "petal";
+  const size = 14 + Math.random() * 22;
+  p.style.left = Math.random() * 100 + "vw";
+  p.style.width = p.style.height = size + "px";
+  p.style.animationDuration = 9 + Math.random() * 10 + "s";
+  p.style.animationDelay = -Math.random() * 15 + "s";
+  p.innerHTML = Math.random() > .5
+    ? flowerSVG(petalColors[i % petalColors.length])
+    : `<svg viewBox="0 0 20 20"><path d="M10 18 C0 10 2 2 10 6 C18 2 20 10 10 18Z" fill="${petalColors[i % 4]}"/></svg>`;
+  document.body.appendChild(p);
+}
+
+// click burst
+function burst(x, y) {
+  const bits = ["🌸", "💗", "✨", "🌷", "💕"];
+  for (let i = 0; i < 7; i++) {
+    const s = document.createElement("span");
+    s.className = "burst";
+    s.textContent = bits[Math.floor(Math.random() * bits.length)];
+    s.style.left = x + "px";
+    s.style.top = y + "px";
+    const ang = Math.random() * Math.PI * 2, dist = 40 + Math.random() * 60;
+    s.style.setProperty("--dx", Math.cos(ang) * dist + "px");
+    s.style.setProperty("--dy", Math.sin(ang) * dist - 20 + "px");
+    s.style.setProperty("--rot", (Math.random() * 120 - 60) + "deg");
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 950);
+  }
+}
+
+/* ---------- sound (generated, no files needed) ---------- */
+let soundOn = true, ctx;
+function audio() {
+  if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)();
+  if (ctx.state === "suspended") ctx.resume();
+  return ctx;
+}
+function tone(freq, start, dur, type = "sine", vol = .18, slideTo) {
+  const c = audio(), o = c.createOscillator(), g = c.createGain();
+  o.type = type;
+  const t = c.currentTime + start;
+  o.frequency.setValueAtTime(freq, t);
+  if (slideTo) o.frequency.exponentialRampToValueAtTime(slideTo, t + dur);
+  g.gain.setValueAtTime(0.0001, t);
+  g.gain.exponentialRampToValueAtTime(vol, t + .02);
+  g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+  o.connect(g).connect(c.destination);
+  o.start(t); o.stop(t + dur + .05);
+}
+const sfx = {
+  pop()   { if (!soundOn) return; tone(520, 0, .12, "sine", .2, 980); },
+  swap()  { if (!soundOn) return; tone(700, 0, .09, "triangle", .15, 1000); tone(1000, .09, .09, "triangle", .15, 700); },
+  go()    { if (!soundOn) return; [660, 880].forEach((f, i) => tone(f, i * .07, .12, "sine", .18)); },
+  done()  { if (!soundOn) return; [784, 988, 1175, 1568].forEach((f, i) => tone(f, i * .09, .25, "sine", .17)); },
+  oops()  { if (!soundOn) return; tone(330, 0, .18, "sine", .18, 220); tone(250, .16, .22, "sine", .18, 160); },
+  on()    { tone(880, 0, .12, "sine", .18); tone(1320, .1, .16, "sine", .18); }
+};
+
+/* ---------- actions ---------- */
+document.addEventListener("pointerdown", (e) => {
+  if (e.target.closest(".btn")) burst(e.clientX, e.clientY);
+});
+
+swapBtn.onclick = () => {
+  sfx.swap();
+  [fromSel.value, toSel.value] = [toSel.value, fromSel.value];
+};
+soundBtn.onclick = () => {
+  soundOn = !soundOn;
+  soundBtn.textContent = soundOn ? "🔔 Sound: on" : "🔕 Sound: off";
+  if (soundOn) sfx.on();
+};
+clearBtn.onclick = () => {
+  sfx.pop();
+  textEl.value = "";
+  resultEl.innerHTML = '<span class="placeholder">Your translation will bloom here…</span>';
+  copyBtn.style.display = "none";
+  textEl.focus();
+};
+copyBtn.onclick = async () => {
+  sfx.pop();
+  try {
+    await navigator.clipboard.writeText(resultEl.textContent);
+    copyBtn.textContent = "Copied! 💖";
+    setTimeout(() => (copyBtn.textContent = "Copy 💌"), 1400);
+  } catch { copyBtn.textContent = "Oops 🥺"; }
+};
+[fromSel, toSel].forEach(s => s.addEventListener("change", () => sfx.pop()));
+
+async function translate() {
+  const text = textEl.value.trim();
+  if (!text) { sfx.oops(); textEl.focus(); return; }
+
+  sfx.go();
+  goBtn.disabled = true;
+  copyBtn.style.display = "none";
+  resultEl.innerHTML = '<span class="loader"><i>🌸</i><i>🌷</i><i>🌼</i> translating…</span>';
+
+  try {
+    const res = await fetch(API_BASE + "/penukarbahasa", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        text,
+        bahasa_masuk: fromSel.value,
+        bahasa_keluar: toSel.value
+      })
+    });
+    if (!res.ok) throw new Error("Server said " + res.status);
+    const data = await res.json();
+    resultEl.textContent = data.text_output;
+    copyBtn.style.display = "inline-block";
+    outEl.classList.remove("pop"); void outEl.offsetWidth; outEl.classList.add("pop");
+    sfx.done();
+    const r = outEl.getBoundingClientRect();
+    burst(r.left + r.width / 2, r.top + 20);
+  } catch (err) {
+    resultEl.innerHTML = '<span class="err">Oh no 🥺 couldn\'t reach the translator. Is the server running?</span>';
+    sfx.oops();
+  } finally {
+    goBtn.disabled = false;
+  }
+}
+goBtn.onclick = translate;
+textEl.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) translate();
+});
+</script>
+</body>
+</html>
