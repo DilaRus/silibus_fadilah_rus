@@ -1,0 +1,11 @@
+x = "Welcome"
+print(x[0])
+print(x[3:6])
+print(x[3:])
+print(x[:5])
+print(x.upper())
+print(x.lower())
+print(len(x))
+print("come" in x)
+print("come1" in x)
+print(x.replace("Welc", "H"))
