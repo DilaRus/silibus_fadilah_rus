@@ -1,0 +1,16 @@
+.personal-info {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: Arial, sans-serif;
+}
+
+.personal-info h1 {
+  color: #4b0082;
+}
+
+.personal-info img {
+  border-radius: 8px;
+}
