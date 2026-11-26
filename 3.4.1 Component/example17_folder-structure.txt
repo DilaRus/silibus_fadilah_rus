@@ -1,0 +1,13 @@
+src/
+  components/
+    common/
+      Button.jsx
+      Card.jsx
+      Modal.jsx
+    layout/
+      Header.jsx
+      Sidebar.jsx
+      Footer.jsx
+    user/
+      UserProfile.jsx
+      UserCard.jsx

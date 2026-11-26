@@ -1,0 +1,6 @@
+/* Not shown on the slides: minimal layout styling so the layout components are visible when you run the example. */
+.app-header { background: #1f2937; color: white; padding: 12px 16px; }
+.app-header nav a { color: #93c5fd; margin-right: 12px; }
+.app-body { display: flex; }
+.sidebar { width: 200px; background: #f3f4f6; padding: 12px; }
+.main-content { flex: 1; padding: 12px; }

@@ -1,0 +1,67 @@
+/* Styling for the Restaurant Menu mini-project (given in the speaker notes of slide 2) */
+/* General Page Styling */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  padding: 20px;
+}
+
+/* Restaurant Header */
+h1 {
+  color: #333;
+  font-size: 32px;
+}
+
+p {
+  font-size: 16px;
+  color: #555;
+}
+
+/* Section for Each Category */
+h2 {
+  margin-top: 30px;
+  font-size: 24px;
+  color: #222;
+}
+
+/* Menu Item Box */
+.menu-item {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 20px;
+  max-width: 400px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Menu Item Image */
+.menu-item img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+/* Price and Tags */
+.menu-item h3 {
+  margin: 5px 0;
+}
+
+.menu-item p {
+  margin: 5px 0;
+}
+
+/* Order Now Button */
+.menu-item button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.menu-item button:hover {
+  background-color: #218838;
+}
